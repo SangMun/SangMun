@@ -20,16 +20,19 @@ SVD로 MIMO 채널을 부채널로 분리하고, 부채널 SINR에 따라 변조
 사용자·권한, 프로세스·시그널, Bash 스크립트(조건·반복·함수·확장, `errexit`·`pipefail`),
 리디렉션·파이프라인, apt·systemd 유닛 파일, grep·find 등 필수 CLI 도구
 
-### ☁️ CJ올리브네트웍스 AI Cloud Wave 1기 — 교육 (2026.06 ~ 2026.08, 400시간)
-고용노동부 K-Digital Training 선도기업 아카데미
+### ☁️ CJ올리브네트웍스 AI Cloud Wave 1기 — 교육 (2026.06.19 ~ 08.28, 400시간)
+고용노동부 K-Digital Training 선도기업 아카데미 · 과목마다 CJ 현직자 특강
 
-| 분야 | 학습 내용 |
-|---|---|
-| 네트워크 | OSI·TCP/IP, IP 서브네팅·VLSM·CIDR, ACL, NAT (Cisco Packet Tracer) |
-| 컨테이너 | Docker, Docker Compose, Kubernetes, Helm |
-| IaC · AWS | Terraform으로 VPC·EC2·ECR·EKS·IAM 구성, boto3 |
-| 관측성 | Prometheus · Grafana · Loki · Tempo · OpenTelemetry, 결함 주입 실습, Datadog |
-| AIOps | 운영 데이터 기반 이상탐지, RAG 기반 운영 자동화, Bedrock LLM 에이전트로 Kubernetes 장애 진단 |
+| 구분 | 과목 | 주요 실습 |
+|---|---|---|
+| 기본교과 64H | AI 인프라를 위한 네트워크 기초 | OSI·TCP/IP, 서브네팅·VLSM·CIDR, ACL, NAT (Packet Tracer) |
+| | Linux 서버 운영 및 클라우드 인프라 | |
+| 심화교과 208H | 컨테이너 및 Kubernetes 운영 | Docker·Compose, Kubernetes, Helm |
+| | 운영 데이터 수집 및 Observability | Prometheus·Grafana·Loki·Tempo·OpenTelemetry, 결함 주입 |
+| | AIOps 기반 이상탐지 및 분석 | 운영 데이터 기반 이상탐지 |
+| | 운영 자동화를 위한 LLM 활용 | Bedrock LLM 에이전트로 Kubernetes 장애 진단 |
+| | RAG 및 Agent 기반 운영 자동화 | RAG 기반 운영 자동화, Dify |
+| 프로젝트 120H | AI 기반 인프라 구축 프로젝트 | 팀 프로젝트·현직자 멘토링 → 아래 O2 |
 
 ### 📈 BTC/XRP 선물 페이퍼 트레이딩 봇 — 개인 프로젝트 (2026.08 ~)
 [paper-futures](https://github.com/SangMun/paper-futures) · Python · AWS Lightsail · GitHub Actions
