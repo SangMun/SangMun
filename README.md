@@ -26,7 +26,7 @@ SVD로 MIMO 채널을 부채널로 분리하고, 부채널 SINR에 따라 변조
 | 구분 | 과목 | 주요 실습 |
 |---|---|---|
 | 기본교과 64H | AI 인프라를 위한 네트워크 기초 | OSI·TCP/IP, 서브네팅·VLSM·CIDR, ACL, NAT (Packet Tracer) |
-| | Linux 서버 운영 및 클라우드 인프라 | |
+| | Linux 서버 운영 및 클라우드 인프라 | 사용자·권한, 패키지, 셸 스크립트, systemd 서비스, AWS EC2·VPC·서브넷·보안 그룹·S3·IAM, Nginx 웹 서버 배포 |
 | 심화교과 208H | 컨테이너 및 Kubernetes 운영 | Docker·Compose, Kubernetes, Helm |
 | | 운영 데이터 수집 및 Observability | Prometheus·Grafana·Loki·Tempo·OpenTelemetry, 결함 주입 |
 | | AIOps 기반 이상탐지 및 분석 | 운영 데이터 기반 이상탐지 |
