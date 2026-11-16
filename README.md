@@ -50,45 +50,41 @@ Linux 서버와 네트워크를 기반으로 인프라를 구축·운영하고, 
 - **서비스 개발** — 방송 정보 조회 API의 캐시 계층과 주문 API·워커를 구현했습니다. Valkey의 재고 차감과 멱등성을 함께 처리하고, SQS를 통해 접수한 주문을 MySQL에 기록하도록 구성했습니다. [#28](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/28) · [#33](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/33) · [#36](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/36) · [#37](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/37)
 - **실시간 채팅·영상** — WebSocket 채팅 게이트웨이와 Valkey Pub/Sub 기반 전파를 구현하고, MediaMTX와 CloudFront를 이용한 HLS 영상 송출을 구성했습니다. [#38](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/38) · [#68](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/68) · [#71](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/71)
 - **배포 자동화·보안** — GitHub Actions 검증과 ECR·Argo CD 기반 GitOps 배포를 구성하고, Trivy 이미지 검사에서 CRITICAL 취약점을 차단했습니다. 배포 매니페스트를 별도 저장소로 분리했습니다. [#3](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/3) · [#8](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/8) · [#11](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/11) · [#12](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/12)
-- **자동 확장·가용성** — 부하를 측정해 Karpenter·KEDA를 도입하고, 방송 큐시트를 이용해 예상 트래픽 전에 파드를 늘리는 기능을 구현했습니다. 노드·NAT·RDS·Valkey를 여러 AZ에 걸쳐 구성했습니다. [#113](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/113) · [#127](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/127) · [#152](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/152) · [#176](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/176) · [#198](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/198) · [#200](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/200) · [#203](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/203)
+- **자동 확장·가용성** — 부하를 측정해 Karpenter·KEDA를 도입하고, 방송 큐시트를 이용해 예상 트래픽 전에 파드를 늘리는 기능을 구현했습니다. 노드·NAT·핵심 애드온을 여러 AZ에 나눠 구성했습니다. [#113](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/113) · [#127](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/127) · [#152](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/152) · [#176](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/176) · [#198](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/198) · [#203](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/203)
 - **관측·장애 대응 검증** — Datadog APM을 적용하고 알림을 Dify 웹훅에 연결했습니다. 채팅 부하 측정, 장애 시나리오 실행기와 복구 판정 기준 개선에 참여했습니다. [#47](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/47) · [#98](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/98) · [#210](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/210) · [#241](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/241) · [#251](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/251)
 
 <details>
-<summary><b>분야별 상세 작업과 검증 결과 보기</b></summary>
+<summary><b>분야별 상세 작업 보기</b></summary>
 
 #### 서비스·데이터 흐름
 
-- 방송 메타데이터는 로컬 캐시·Valkey·MySQL을 활용하고, 수시로 바뀌는 재고는 Valkey에서 별도로 조회했습니다. [#28](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/28)
-- 주문 접수 시 멱등 확인과 재고 차감을 묶어 중복 차감을 방지하고, 비동기 주문 워커에서 MySQL 기록과 오류 유형별 재처리를 구현했습니다. 주문 상태 조회도 연결했습니다. [#33](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/33) · [#35](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/35) · [#36](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/36) · [#37](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/37)
-- API 준비 상태에서 MySQL·Valkey 연결을 확인하도록 하고, 방송·상품·주문 스키마 및 마이그레이션을 구성했습니다. [#25](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/25) · [#26](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/26)
-- WebSocket 채팅을 여러 파드로 전파하고, 이벤트에 채팅 원문 대신 길이·해시 등의 정보를 사용하도록 구성했습니다. 서비스 이벤트를 Kinesis로 보내는 연결도 작업했습니다. [#38](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/38) · [#29](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/29) · [#50](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/50)
-- 프론트엔드를 실제 API·WebSocket에 연결하고 HLS 재생을 구성했습니다. 정상 재생 중 플레이어가 반복 재부착되던 문제를 측정해 수정했습니다. [#40](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/40) · [#66](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/66) · [#267](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/267)
-- HLS만 CloudFront를 통과하도록 경로를 제한하고, 플레이리스트와 영상 세그먼트의 캐시 정책을 분리했습니다. [#68](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/68) · [#71](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/71) · [#73](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/73)
+- 방송 메타데이터는 로컬 캐시·Valkey·MySQL 순서로 조회하고, 자주 바뀌는 재고는 Valkey에서 따로 조회했습니다. [#28](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/28)
+- 주문 접수 시 멱등 확인과 재고 차감을 묶어 중복 차감을 막고, 비동기 워커에서 MySQL 기록과 오류 유형별 재처리를 구현했습니다. [#33](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/33) · [#36](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/36) · [#37](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/37)
+- API 준비 상태(readyz)에서 MySQL·Valkey 연결을 확인하고, 스키마와 마이그레이션을 구성했습니다. [#25](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/25) · [#26](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/26)
+- WebSocket 채팅을 여러 파드로 전파하고, 서비스 이벤트를 Kinesis로 보내도록 연결했습니다. [#38](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/38) · [#50](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/50)
+- HLS 영상만 CloudFront를 통과하도록 경로를 제한하고, 플레이리스트와 영상 세그먼트의 캐시 정책을 나눴습니다. [#68](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/68) · [#71](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/71) · [#73](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/73)
 
 #### CI/CD·인프라
 
-- 기존 팀의 네트워크·EKS Terraform 코드를 버전 관리에 편입하고, Argo CD와 Load Balancer Controller 등의 플랫폼 구성을 코드로 정리했습니다. [#4](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/4)
-- Python·Node 프로젝트의 검증 잡을 확장하고, Trivy 검사 결과를 기록한 뒤 CRITICAL 취약점이 있으면 이미지 푸시를 막도록 구성했습니다. [#8](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/8) · [#11](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/11) · [#12](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/12)
-- 파드당 주문 처리량을 측정하고 KEDA에 SQS 조회 권한을 부여했습니다. 측정 시점에는 파드당 약 49건/초를 확인하고 12개 파드까지 살펴봤습니다. [#127](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/127)
-- 파드 준비 시간을 측정해 사전 확장 리드타임을 정하고, 큐시트를 읽어 캐시 워밍과 파드 사전 확장을 수행하는 cue-warmer를 구현했습니다. 파드 확장 기능의 실제 워머 이미지 내 동작은 해당 PR 당시 배포 후 확인 과제로 남겼습니다. [#152](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/152) · [#156](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/156) · [#157](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/157) · [#160](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/160) · [#176](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/176)
-- AZ 장애 시 남은 노드의 수용량을 고려해 노드를 4대로 조정하고, AZ별 NAT와 RDS·Valkey 이중화 및 핵심 애드온 분산을 구성했습니다. [#198](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/198) · [#200](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/200) · [#201](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/201) · [#202](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/202) · [#203](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/203) · [#205](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/205)
-- Valkey 백업이 존재하지 않는 MySQL 재고 반영 배치를 근거로 꺼져 있음을 확인해 백업을 켜고 주석을 수정했습니다. 장애 전환 시험에서 애플리케이션 기준 RDS 15초, Valkey 37초의 중단을 기록했습니다. [#200](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/200) · [#207](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/207)
+- 팀의 네트워크·EKS Terraform 코드를 버전 관리에 편입하고, Argo CD·Load Balancer Controller 등 플랫폼 구성을 코드로 정리했습니다. [#4](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/4)
+- Python·Node 검증 잡을 확장하고, Trivy 검사에서 CRITICAL 취약점이 나오면 이미지 푸시를 막도록 구성했습니다. [#8](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/8) · [#11](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/11) · [#12](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/12)
+- 파드당 주문 처리량을 측정해 KEDA 확장 기준을 정했습니다. [#127](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/127)
+- 파드 준비 시간을 측정해 사전 확장 시점을 정하고, 방송 큐시트를 읽어 캐시 워밍과 파드 사전 확장을 하는 cue-warmer를 구현했습니다. [#152](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/152) · [#176](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/176)
+- AZ 하나가 멈춰도 남은 노드가 트래픽을 받아낼 수 있게 노드 수를 조정하고, AZ별 NAT와 핵심 애드온 분산을 구성했습니다. [#198](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/198) · [#201](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/201) · [#202](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/202) · [#203](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/203)
 
-#### 관측·장애 대응과 측정
+#### 관측·장애 대응
 
-- Datadog APM으로 서비스별 추적을 추가하고, 모니터 알림을 Dify 웹훅으로 연결했습니다. 서비스 측 이벤트를 Kinesis에 전달하는 지점도 구성했습니다. [#47](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/47) · [#50](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/50) · [#98](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/98)
-- 채팅 장애 시나리오의 부하 주입·조치·검증을 단계별로 실행하고, 에이전트와 별도로 결과를 판정하는 실행기를 작성했습니다. [#210](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/210)
-- 채팅 전파 부하를 다시 측정해 기존 추정치를 정정했습니다. 전파 초당 12만 건에서는 지연이 증가해도 파드가 유지됐고, 16만 건에서는 메모리 한도에 도달해 종료됐습니다. [#220](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/220) · [#238](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/238) · [#241](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/241)
-- 채팅 제한 조치가 실제로는 사용자 발화 도달률을 낮추는 문제를 분석해 제한 창과 런북 값을 수정했습니다. 수정 후 실환경 E2E 재측정은 해당 PR의 후속 과제로 남겼습니다. [#261](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/261)
-- 장애 중에도 복구로 잘못 판정되던 문제를 발견해 실측을 바탕으로 p99 응답 시간 50ms 이하 조건을 추가했습니다. 로컬 시뮬레이션에서 판정 분기를 확인했으며, 격리 후 실측은 당시 남은 과제로 기록했습니다. [#251](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/251) · [#256](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/256)
-- 실행 가능한 런북이 없을 때 재진단을 반복하지 않고 사람에게 넘기도록 워크플로를 수정했습니다. 해당 PR 기준 저장소 구현과 테스트를 마쳤고 실환경 반영은 후속 과제로 남겼습니다. [#246](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/246)
-- 결제사 장애 시뮬레이션과 사람의 검증 이력을 근거로 PG Failover 런북의 활성화를 정리했습니다. 해당 PR에서는 두 번째 실행의 E2E 증거가 남은 과제였습니다. [#263](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/263)
-- Bedrock 호출의 60초 시간 제한과 Dify 설정이 서로 다른 구간에 적용됨을 추적하고, 같은 입력에서 모델별 응답 시간을 비교해 해결 방안을 문서화했습니다. [#252](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/252)
-
+- Datadog APM으로 서비스별 추적을 추가하고, 모니터 알림을 Dify 웹훅으로 연결했습니다. [#47](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/47) · [#98](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/98)
+- 채팅 장애 시나리오의 부하 주입·조치·검증을 단계별로 실행하고, 결과를 따로 판정하는 실행기를 작성했습니다. [#210](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/210)
+- 부하를 다시 측정해 채팅 서버 한계에 대한 기존 추정치를 바로잡았습니다. [#220](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/220) · [#241](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/241)
+- 장애 중인데 복구로 잘못 판정되던 문제를 찾아 응답 시간 조건을 추가했습니다. [#251](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/251)
+- 실행할 런북이 없으면 재진단을 반복하지 않고 사람에게 넘기도록 워크플로를 수정했습니다. [#246](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/246)
+- 결제사 장애 시뮬레이션 결과를 근거로 PG Failover 런북을 활성화했습니다. [#263](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/263)
+- Bedrock 호출 시간 제한 문제를 추적하고, 모델별 응답 시간을 비교해 해결 방안을 문서화했습니다. [#252](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/252)
 </details>
 
 <details>
-<summary><b>주요 머지 PR (전체 96건 중 22건)</b></summary>
+<summary><b>주요 머지 PR (전체 96건 중 21건)</b></summary>
 
 분야별로 대표 PR만 골랐습니다. 각 PR에는 작업 내용과 당시 검증 범위·남은 과제가 기록돼 있습니다. 전체 목록은 [저장소의 머지 PR](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pulls?q=is%3Apr+is%3Amerged+author%3ASangMun)에서 볼 수 있습니다.
 
@@ -123,7 +119,6 @@ Linux 서버와 네트워크를 기반으로 인프라를 구축·운영하고, 
 
 - [#198 infra(eks): AZ 하나를 잃어도 남은 AZ 가 받아낼 수 있게 노드를 넷으로 둔다](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/198)
 - [#203 infra(network): NAT 게이트웨이를 AZ 마다 둔다](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/203)
-- [#207 docs: AZ 이중화의 실측·판단·함정을 남긴다](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops/pull/207)
 
 **관측·장애 대응 검증**
 
