@@ -9,7 +9,7 @@ Linux 서버와 네트워크를 기반으로 인프라를 구축·운영하고, 
 
 **Observability** · Prometheus · Grafana · Datadog
 
-**Language** · Python · TypeScript
+**Language** · Python · Bash
 
 ---
 
