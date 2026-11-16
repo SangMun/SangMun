@@ -7,7 +7,7 @@ AWS 인프라를 Terraform으로 구성하고 Kubernetes 위에서 서비스를 
 
 ---
 
-### 🎓 4x4 MIMO SVD 적응 변조 시뮬레이션 — 졸업작품
+### 🎓 4x4 MIMO SVD 적응형 변조 시뮬레이션 — 졸업작품
 [mimo-svd-adaptive-modulation](https://github.com/SangMun/mimo-svd-adaptive-modulation) · MATLAB
 
 SVD로 MIMO 채널을 부채널로 분리하고, 부채널 SINR에 따라 변조 방식(BPSK~64QAM)과
