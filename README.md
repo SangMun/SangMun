@@ -13,6 +13,8 @@ Linux 서버와 네트워크를 기반으로 인프라를 구축·운영하고, 
 
 ---
 
+## 🛠 프로젝트
+
 ### 🛒 O2 Live Commerce AIOps — 최종 프로젝트 (2026.08, 5인 · 3주)
 [CJ-AI-Cloud-Wave/O2-live-ai-ops](https://github.com/CJ-AI-Cloud-Wave/O2-live-ai-ops) · 주 담당: **서비스 개발 · CI/CD 및 GitOps**
 
@@ -115,12 +117,22 @@ Linux 서버와 네트워크를 기반으로 인프라를 구축·운영하고, 
 - systemd로 전략별 계좌 분리 운용, S3 일일 백업, 디스코드 알림
 - 채택·기각한 실험을 [EXPERIMENTS.md](https://github.com/SangMun/paper-futures/blob/main/EXPERIMENTS.md)에 기록
 
-### 🐧 코딩자율학습단 리눅스 19기 — 독학 (2026.01 ~ 2026.02, 4주)
-[주차별 학습 기록](https://blog.naver.com/lsmeforna3/224151036118) · 우분투
+### 📱 Mobile To-Do — 모바일프로그래밍 기말 과제 (2025.09 ~ 2025.12)
+[mobile-todo](https://github.com/SangMun/mobile-todo) · Kotlin · Spring Boot · AWS RDS
 
-책 한 권(14장)을 4주 동안 완주하며 매주 학습 내용을 블로그에 정리했습니다.
-사용자·권한, 프로세스·시그널, Bash 스크립트(조건·반복·함수·확장, `errexit`·`pipefail`),
-리디렉션·파이프라인, apt·systemd 유닛 파일, grep·find 등 필수 CLI 도구
+앱 안에만 저장되던 투두리스트를 Spring Boot 서버와 AWS RDS(MySQL)에 연결해, 앱을 다시 실행해도 데이터가 유지되도록 개선했습니다.
+- Android(Kotlin) 앱에서 Retrofit으로 할 일 조회·추가·삭제 API 호출
+- Spring Boot REST API와 Spring Data JPA로 DB 연결
+
+### 🎓 4x4 MIMO SVD 적응형 변조 시뮬레이션 — 졸업작품 (2024.09 ~ 2025.11, 2인)
+[mimo-svd-adaptive-modulation](https://github.com/SangMun/mimo-svd-adaptive-modulation) · MATLAB · 2인 팀 · 2025 전자정보대학 캡스톤디자인 졸업작품전시회 출품 (2025.11.13)
+
+SVD로 MIMO 채널을 부채널로 분리하고, 부채널 SINR에 따라 변조 방식(BPSK~64QAM)과
+전력(water-pouring)을 바꾸는 적응 변조를 고정 변조와 BER·처리량으로 비교했습니다.
+
+---
+
+## 📚 학습·교육
 
 ### ☁️ CJ올리브네트웍스 AI Cloud Wave 1기 — 교육 (2026.06.19 ~ 08.28, 400시간)
 고용노동부 K-Digital Training 선도기업 아카데미 · 과목마다 CJ 현직자 특강
@@ -134,10 +146,11 @@ Linux 서버와 네트워크를 기반으로 인프라를 구축·운영하고, 
 | | AIOps 기반 이상탐지 및 분석 | 운영 데이터 기반 이상탐지 |
 | | 운영 자동화를 위한 LLM 활용 | Bedrock LLM 에이전트로 Kubernetes 장애 진단 |
 | | RAG 및 Agent 기반 운영 자동화 | RAG 기반 운영 자동화, Dify |
-| 프로젝트 120H | AI 기반 인프라 구축 프로젝트 | 팀 프로젝트·현직자 멘토링 → 아래 O2 |
+| 프로젝트 120H | AI 기반 인프라 구축 프로젝트 | 팀 프로젝트·현직자 멘토링 → 위 O2 |
 
-### 🎓 4x4 MIMO SVD 적응형 변조 시뮬레이션 — 졸업작품 (2024.09 ~ 2025.11, 2인)
-[mimo-svd-adaptive-modulation](https://github.com/SangMun/mimo-svd-adaptive-modulation) · MATLAB · 2인 팀 · 2025 전자정보대학 캡스톤디자인 졸업작품전시회 출품 (2025.11.13)
+### 🐧 코딩자율학습단 리눅스 19기 — 독학 (2026.01 ~ 2026.02, 4주)
+[주차별 학습 기록](https://blog.naver.com/lsmeforna3/224151036118) · 우분투
 
-SVD로 MIMO 채널을 부채널로 분리하고, 부채널 SINR에 따라 변조 방식(BPSK~64QAM)과
-전력(water-pouring)을 바꾸는 적응 변조를 고정 변조와 BER·처리량으로 비교했습니다.
+책 한 권(14장)을 4주 동안 완주하며 매주 학습 내용을 블로그에 정리했습니다.
+사용자·권한, 프로세스·시그널, Bash 스크립트(조건·반복·함수·확장, `errexit`·`pipefail`),
+리디렉션·파이프라인, apt·systemd 유닛 파일, grep·find 등 필수 CLI 도구
