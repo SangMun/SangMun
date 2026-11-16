@@ -195,7 +195,7 @@ Linux 서버와 네트워크를 기반으로 인프라를 구축·운영하고, 
 | 프로젝트 120H | AI 기반 인프라 구축 프로젝트 | 팀 프로젝트·현직자 멘토링 → 아래 O2 |
 
 ### 🎓 4x4 MIMO SVD 적응형 변조 시뮬레이션 — 졸업작품 (2024.09 ~ 2025.11, 2인)
-[mimo-svd-adaptive-modulation](https://github.com/SangMun/mimo-svd-adaptive-modulation) · MATLAB · 2인 팀 (이상문, 박준영) · 2025 전자정보대학 캡스톤디자인 졸업작품전시회 출품 (2025.11.13)
+[mimo-svd-adaptive-modulation](https://github.com/SangMun/mimo-svd-adaptive-modulation) · MATLAB · 2인 팀 · 2025 전자정보대학 캡스톤디자인 졸업작품전시회 출품 (2025.11.13)
 
 SVD로 MIMO 채널을 부채널로 분리하고, 부채널 SINR에 따라 변조 방식(BPSK~64QAM)과
 전력(water-pouring)을 바꾸는 적응 변조를 고정 변조와 BER·처리량으로 비교했습니다.
