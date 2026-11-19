@@ -152,7 +152,7 @@ Linux와 네트워크를 공부하고 AWS와 Kubernetes로 서비스를 구축�
 ### 📈 BTC/XRP 선물 페이퍼 트레이딩 봇 — 개인 프로젝트 (2026.08 ~)
 [paper-futures](https://github.com/SangMun/paper-futures) · Python · AWS Lightsail · GitHub Actions
 
-수익보다 **"이 전략이 우연이 아닌가"를 검증하는 절차**에 무게를 둔 자동매매 봇입니다.
+**자동매매 후 손해를 분석하고 보완하는** 자동매매 봇입니다.
 - 실시간 루프와 과거 리플레이가 같은 엔진 코드를 쓰도록 설계, 미래참조 시점 오류 5건 수정
 - pytest 551개 CI, 서버 pull 방식 커밋 기반 배포·자동 롤백(CD)
 - systemd로 전략별 계좌 분리 운용, S3 일일 백업, 디스코드 알림
